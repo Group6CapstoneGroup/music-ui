@@ -1,3 +1,4 @@
+using CapstoneMusic.App.Pages;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ namespace CapstoneMusic.App
     {
         public static async Task Main(string[] args)
         {
+            FriendOverview myFriends = new FriendOverview();
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
