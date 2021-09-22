@@ -1,8 +1,0 @@
-C:\Users\MiMcGraw\source\repos\music-ui\CapstoneMusic.App\CapstoneMusic.Shared\bin\Debug\netstandard2.0\CapstoneMusic.Shared.deps.json
-C:\Users\MiMcGraw\source\repos\music-ui\CapstoneMusic.App\CapstoneMusic.Shared\bin\Debug\netstandard2.0\CapstoneMusic.Shared.dll
-C:\Users\MiMcGraw\source\repos\music-ui\CapstoneMusic.App\CapstoneMusic.Shared\bin\Debug\netstandard2.0\CapstoneMusic.Shared.pdb
-C:\Users\MiMcGraw\source\repos\music-ui\CapstoneMusic.App\CapstoneMusic.Shared\obj\Debug\netstandard2.0\CapstoneMusic.Shared.AssemblyInfoInputs.cache
-C:\Users\MiMcGraw\source\repos\music-ui\CapstoneMusic.App\CapstoneMusic.Shared\obj\Debug\netstandard2.0\CapstoneMusic.Shared.AssemblyInfo.cs
-C:\Users\MiMcGraw\source\repos\music-ui\CapstoneMusic.App\CapstoneMusic.Shared\obj\Debug\netstandard2.0\CapstoneMusic.Shared.csproj.CoreCompileInputs.cache
-C:\Users\MiMcGraw\source\repos\music-ui\CapstoneMusic.App\CapstoneMusic.Shared\obj\Debug\netstandard2.0\CapstoneMusic.Shared.dll
-C:\Users\MiMcGraw\source\repos\music-ui\CapstoneMusic.App\CapstoneMusic.Shared\obj\Debug\netstandard2.0\CapstoneMusic.Shared.pdb
