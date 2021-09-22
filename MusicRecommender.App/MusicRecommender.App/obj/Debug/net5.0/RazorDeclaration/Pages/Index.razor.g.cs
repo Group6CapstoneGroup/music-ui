@@ -82,13 +82,6 @@ using MusicRecommender.App.Shared;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 2 "C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\Pages\Index.razor"
-using MusicRecommender.App.Components;
-
-#line default
-#line hidden
-#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {

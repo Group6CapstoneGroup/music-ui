@@ -83,7 +83,7 @@ using MusicRecommender.App.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\Shared\MainLayout.razor"
+#line 6 "C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\Shared\MainLayout.razor"
 using MusicRecommender.App.Components;
 
 #line default
