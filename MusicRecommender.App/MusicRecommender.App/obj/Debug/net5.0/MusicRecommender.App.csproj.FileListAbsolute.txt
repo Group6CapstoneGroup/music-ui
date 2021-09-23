@@ -630,3 +630,11 @@ C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.Ap
 C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\obj\Debug\net5.0\MusicRecommender.App.pdb
 C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\obj\Debug\net5.0\RazorDeclaration\Components\MenuBar.razor.g.cs
 C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\obj\Debug\net5.0\Razor\Components\MenuBar.razor.g.cs
+C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\obj\Debug\net5.0\RazorDeclaration\Pages\AccountForm.razor.g.cs
+C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\obj\Debug\net5.0\RazorDeclaration\Pages\LoginForm.razor.g.cs
+C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\obj\Debug\net5.0\Razor\Pages\AccountForm.razor.g.cs
+C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\obj\Debug\net5.0\Razor\Pages\LoginForm.razor.g.cs
+C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\obj\Debug\net5.0\RazorDeclaration\Components\Login.razor.g.cs
+C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\obj\Debug\net5.0\RazorDeclaration\Pages\AboutForm.razor.g.cs
+C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\obj\Debug\net5.0\Razor\Components\Login.razor.g.cs
+C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\obj\Debug\net5.0\Razor\Pages\AboutForm.razor.g.cs

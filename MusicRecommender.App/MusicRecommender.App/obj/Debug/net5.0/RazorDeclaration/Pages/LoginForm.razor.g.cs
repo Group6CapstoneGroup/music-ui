@@ -82,30 +82,21 @@ using MusicRecommender.App.Shared;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
-    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 1 "C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\Pages\LoginForm.razor"
+using MusicRecommender.App.Components;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
+    public partial class LoginForm : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 33 "C:\Users\MiMcGraw\source\repos\music-ui\MusicRecommender.App\MusicRecommender.App\Pages\Index.razor"
-      
-    void LoginNavigate()
-    {
-        UriHelper.NavigateTo("/login");
-    }
-    void SignUpNavigate()
-    {
-        UriHelper.NavigateTo("/signup");
-    }
-
-#line default
-#line hidden
-#nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager UriHelper { get; set; }
     }
 }
 #pragma warning restore 1591
