@@ -3,23 +3,11 @@
 
 
 <div>
-    <table role="grid"
-           aria-labelledby="grid1Label"
-           class="data">
-        <tbody>
-            <tr>
-                <th>
-                    @nameof(Music.Artist)
-                </th>
-                <th>
-                    @nameof(Music.Song)
-                </th>
-                <th>
-                    @nameof(Music.Album)
-                </th>
-            </tr>
-        </tbody>
-    </table>
+    <DataGrid TItem="Music" Data="@songs">
+        <DataGridColumn TItem="Music" Field="@nameof(Music.Artist)" Caption="Artist"></DataGridColumn>
+        <DataGridColumn TItem="Music" Field="@nameof(Music.Song)" Caption="Song"></DataGridColumn>
+        <DataGridColumn TItem="Music" Field="@nameof(Music.Album)" Caption="Album"></DataGridColumn>
+    </DataGrid>
 </div>
 
 
