@@ -1,0 +1,29 @@
+﻿@using MusicRecommendation.App.Models
+@using Blazorise.DataGrid
+
+
+<div>
+    <table role="grid"
+           aria-labelledby="grid1Label"
+           class="data">
+        <tbody>
+            <tr>
+                <th>
+                    @nameof(Music.Artist)
+                </th>
+                <th>
+                    @nameof(Music.Song)
+                </th>
+                <th>
+                    @nameof(Music.Album)
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+@code {
+
+    public Music[] songs;
+}
