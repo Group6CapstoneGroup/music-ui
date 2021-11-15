@@ -2,6 +2,7 @@ using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace MusicRecommendation.App
 {
+    [EnableCors]
     public class Program
     {
         public static async Task Main(string[] args)
@@ -24,6 +26,19 @@ namespace MusicRecommendation.App
             builder.Services.AddBlazorise(option=>{
                 option.ChangeTextOnKeyPress = true;
             }).AddBootstrapProviders().AddFontAwesomeIcons();
+
+            builder.Services.AddCors(options =>
+            {
+
+                options.AddDefaultPolicy(builder =>
+                    {
+                                     builder.AllowAnyOrigin()
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
+
+            builder.Services.AddHttpClient();
             await builder.Build().RunAsync();
         }
     }
