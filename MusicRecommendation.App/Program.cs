@@ -26,7 +26,6 @@ namespace MusicRecommendation.App
             builder.Services.AddBlazorise(option=>{
                 option.ChangeTextOnKeyPress = true;
             }).AddBootstrapProviders().AddFontAwesomeIcons();
-
             builder.Services.AddCors(options =>
             {
 
