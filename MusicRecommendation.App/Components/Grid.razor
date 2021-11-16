@@ -7,6 +7,7 @@
 @using Microsoft.Extensions.Logging;
 @inject IHttpClientFactory ClientFactory
 
+
 @if(songs == null)
 {
 
@@ -15,14 +16,17 @@
 }
 else
 {
+
     <div>
-        <DataGrid TItem="Music" Data="@songs">
+        <DataGrid TItem="Music" Data="@songs" Sortable="true" Editable="false" ShowPager="true" PageSize="5">
             <DataGridColumn TItem="Music" Field="@nameof(Music.Artist)" Caption="Artist"></DataGridColumn>
             <DataGridColumn TItem="Music" Field="@nameof(Music.Track)" Caption="Song"></DataGridColumn>
             <DataGridColumn TItem="Music" Field="@nameof(Music.Album)" Caption="Album"></DataGridColumn>
             <DataGridColumn TItem="Music" Field="@nameof(Music.Playlist)" Caption="Playlist"></DataGridColumn>
         </DataGrid>
     </div>
+
+
 
 }
 
@@ -31,7 +35,7 @@ else
 @code
 {
 
-    private List<Music> songs = new List<Music>();
+    private IEnumerable<Music> songs;
 
     protected override async Task OnInitializedAsync()
     {
@@ -51,7 +55,9 @@ else
 
             songs = JsonSerializer.Deserialize<List<Music>>(responseBody);
 
-            Console.WriteLine(songs.Count);
+
+
+          
 
 
         }
@@ -59,6 +65,8 @@ else
         {
             System.Diagnostics.Debug.WriteLine("An error occured when fetching song data");
         }
+
+
     }
 }
 
