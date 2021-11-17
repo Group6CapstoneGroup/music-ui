@@ -19,5 +19,7 @@ namespace MusicRecommendation.App.Models
         public string Album { get; set; }
         [JsonPropertyName("playlist")]
         public string Playlist { get; set; }
+
+        public string Selected { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿@using MusicRecommendation.App.Shared
+@inject NavigationManager UriHelper
 
 <html>
 <head>
@@ -11,7 +12,6 @@
             color: white;
             text-align: center;
             width: 10%;
-
         }
 
         input {
@@ -20,7 +20,8 @@
             border: 1px solid #ccc;
             padding: 8px;
         }
-        form{
+
+        form {
             padding-top: 10px;
         }
     </style>
@@ -35,12 +36,18 @@
                 <input @bind="Password" type="password" placeholder="Password" name="password">
             </div>
             <div>
-                <button> Sign In </button>
+                <button @onclick="@onSignInClick"> Sign In </button>
             </div>
         </form>
     </center>
 </body>
 </html>
-@code {
 
+
+@code
+{ 
+    void onSignInClick()
+    {
+       UriHelper.NavigateTo("/account");
+    } 
 }

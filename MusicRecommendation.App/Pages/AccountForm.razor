@@ -1,15 +1,38 @@
 ﻿@page "/account"
 @using MusicRecommendation.App.Components
+@inject NavigationManager UriHelper
 
 <html>
 <head>
-
+    <style>
+        button {
+            border-radius: 12px;
+            background-color: #2ECC71;
+            border: none;
+            padding: 10px;
+            color: white;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <div>
         <h4>Account Details Here</h4>
+
+        <h6>Playlist Details</h6>
         <Grid />
+        <button @onclick="@onRecommendationButtonClick">Recommendation Finder</button>
     </div>
 
 </body>
 </html>
+
+@code
+{ 
+
+    void onRecommendationButtonClick()
+    {
+        UriHelper.NavigateTo("/recommendations");
+    }
+
+}
