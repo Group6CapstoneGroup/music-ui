@@ -1,7 +1,38 @@
 ﻿@page "/recommendations"
+@using MusicRecommendation.App.Components
+@inject IHttpClientFactory ClientFactory
 
 <h3>RecommendationForm</h3>
+<RecommendationSongTable/>
+
 
 @code {
+
+    protected override async Task OnInitializedAsync()
+    {
+
+
+        var request = new HttpRequestMessage(HttpMethod.Get,
+            "http://127.0.0.1:5000/");
+
+        var client = ClientFactory.CreateClient();
+
+        var response = await client.SendAsync(request);
+        Console.WriteLine("I am about to make the API call");
+        if (response.IsSuccessStatusCode)
+        {
+            Console.WriteLine("I successfully made the GET all music call");
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            Console.WriteLine(responseBody);
+
+        }
+        else
+        {
+            System.Diagnostics.Debug.WriteLine("An error occured when fetching song data");
+        }
+
+
+    }
 
 }

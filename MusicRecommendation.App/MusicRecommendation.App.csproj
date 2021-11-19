@@ -24,8 +24,4 @@
     <Folder Include="wwwroot\sample-data\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\MySpotifyPlaylist.csv" />
-  </ItemGroup>
-
 </Project>

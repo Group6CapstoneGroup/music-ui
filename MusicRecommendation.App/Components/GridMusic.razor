@@ -6,9 +6,10 @@
 @using System.Text.Json.Serialization;
 @using Microsoft.Extensions.Logging;
 @inject IHttpClientFactory ClientFactory
+@inherits GridMusicBase
 
 
-@if(songs == null)
+@if(Songs == null)
 {
 
     <p><em>Loading....</em></p>
@@ -18,7 +19,7 @@ else
 {
 
     <div>
-        <DataGrid TItem="Music" Data="@songs" Sortable="true" Editable="false" ShowPager="true" PageSize="10">
+        <DataGrid TItem="Music" Data="@Songs" Sortable="true" Editable="false" ShowPager="true" PageSize="10">
             <DataGridCheckColumn TItem="Music" Field="@nameof(Music.Selected)" Editable="true" Width="60" Filterable="false"><DisplayTemplate><Check TValue="bool"></Check></DisplayTemplate></DataGridCheckColumn>
             <DataGridColumn TItem="Music" Field="@nameof(Music.Artist)" Caption="Artist" Filterable="true"></DataGridColumn>
             <DataGridColumn TItem="Music" Field="@nameof(Music.Track)" Caption="Song"Filterable="true"></DataGridColumn>
@@ -36,37 +37,9 @@ else
 @code
 {
 
-    private IEnumerable<Music> songs;
-
     protected override async Task OnInitializedAsync()
     {
-
-
-        var request = new HttpRequestMessage(HttpMethod.Get,
-            "https://localhost:5001/api/Music");
-
-        var client = ClientFactory.CreateClient();
-
-        var response = await client.SendAsync(request);
-        Console.WriteLine("I am about to make the API call");
-        if (response.IsSuccessStatusCode)
-        {
-            Console.WriteLine("I successfully made the GET all music call");
-            var responseBody = await response.Content.ReadAsStringAsync();
-
-            songs = JsonSerializer.Deserialize<List<Music>>(responseBody);
-
-
-
-          
-
-
-        }
-        else
-        {
-            System.Diagnostics.Debug.WriteLine("An error occured when fetching song data");
-        }
-
+        Songs = (await MusicService.GetSongs());
 
     }
 }
