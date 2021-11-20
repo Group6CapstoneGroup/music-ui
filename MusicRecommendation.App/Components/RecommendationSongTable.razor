@@ -3,32 +3,39 @@
 @using MusicRecommendation.App.Components
 @using Blazorise.DataGrid
 @inject HttpClient httpClient
-@inherits RecommendationSongBase
-
+@inherits GridMusicBase
 <h3>RecommendationSongTable</h3>
 
-@if (recommendationData == null)
-{
 
-    <p><em>Loading....</em></p>
-
-}
-else
-{
     <div>
-        <DataGrid TItem="Music" Data="@recommendationData" Sortable="true" Editable="false" ShowPager="true" PageSize="10">
-            <DataGridColumn TItem="Music" Field="@nameof(Music.Artist)" Caption="Artist" Filterable="true"></DataGridColumn>
+        <DataGrid TItem="Music" 
+                  Data="@RecommendationList" 
+                  Sortable="true" 
+                  Editable="false" 
+                  ShowPager="true" 
+                  PageSize="10">
             <DataGridColumn TItem="Music" Field="@nameof(Music.Track)" Caption="Song" Filterable="true"></DataGridColumn>
             <DataGridColumn TItem="Music" Field="@nameof(Music.Album)" Caption="Album" Filterable="true"></DataGridColumn>
             <DataGridColumn TItem="Music" Field="@nameof(Music.Playlist)" Caption="Playlist" Filterable="true"></DataGridColumn>
         </DataGrid>
     </div>
-}
+    @if(RecommendationList is null)
+    {
+        <p> is null</p>
+    }
+    else
+    {
+        <p>RecommendationList.Count</p>
+    }
+
 
 
 @code {
 
-    private IEnumerable<Music> recommendationData;
+    protected override async Task OnInitializedAsync()
+    {
+        RecommendationList = (await MusicService.GetSelectedSongs());
 
+    }
 
 }

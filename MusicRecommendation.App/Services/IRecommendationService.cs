@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace MusicRecommendation.App.Services
 {
-    public interface IMusicService
+    public interface IRecommendationService
     {
-        Task<IEnumerable<Music>> GetSongs();
-        Task<Music> CreateSelectedSongs(Music body);
-        Task<IEnumerable<Music>> GetSelectedSongs();
+        Task<IEnumerable<Music>> GetRecommendations();
     }
 }

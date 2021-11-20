@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace MusicRecommendation.App.Services
 {
-    public interface IMusicService
+    public class RecommendationService : IRecommendationService
     {
-        Task<IEnumerable<Music>> GetSongs();
-        Task<Music> CreateSelectedSongs(Music body);
-        Task<IEnumerable<Music>> GetSelectedSongs();
+        public Task<IEnumerable<Music>> GetRecommendations()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,48 +1,81 @@
 ﻿@using MusicRecommendation.App.Models
 @using MusicRecommendation.App.Common
 @using Blazorise.DataGrid
+
 @using System.IO
 @using System.Text.Json
 @using System.Text.Json.Serialization;
 @using Microsoft.Extensions.Logging;
 @inject IHttpClientFactory ClientFactory
 @inherits GridMusicBase
+@inject NavigationManager UriHelper
 
-
-@if(Songs == null)
-{
-
-    <p><em>Loading....</em></p>
-
-}
-else
-{
-
-    <div>
-        <DataGrid TItem="Music" Data="@Songs" Sortable="true" Editable="false" ShowPager="true" PageSize="10">
-            <DataGridCheckColumn TItem="Music" Field="@nameof(Music.Selected)" Editable="true" Width="60" Filterable="false"><DisplayTemplate><Check TValue="bool"></Check></DisplayTemplate></DataGridCheckColumn>
-            <DataGridColumn TItem="Music" Field="@nameof(Music.Artist)" Caption="Artist" Filterable="true"></DataGridColumn>
-            <DataGridColumn TItem="Music" Field="@nameof(Music.Track)" Caption="Song"Filterable="true"></DataGridColumn>
-            <DataGridColumn TItem="Music" Field="@nameof(Music.Album)" Caption="Album" Filterable="true"></DataGridColumn>
-            <DataGridColumn TItem="Music" Field="@nameof(Music.Playlist)" Caption="Playlist" Filterable="true"></DataGridColumn>
-        </DataGrid>
-    </div>
-
-
-
-}
-
-
-
-@code
-{
-
-    protected override async Task OnInitializedAsync()
+    @if (Songs == null)
     {
-        Songs = (await MusicService.GetSongs());
+
+        <p><em>Loading....</em></p>
 
     }
-}
+    else
+    {
+
+        <div>
+            <DataGrid TItem="Music"
+                      Data="@Songs"
+                      Sortable="true"
+                      Editable="false"
+                      ShowPager="true"
+                      PageSize="10"
+                      SelectionMode="DataGridSelectionMode.Multiple"
+                      @bind-SelectedRows="selectedSongs"
+                      Responsive>
+                <DataGridMultiSelectColumn TItem="Music" Width="30px"></DataGridMultiSelectColumn>
+                <DataGridColumn TItem="Music" Field="@nameof(Music.Artist)" Caption="Artist" Filterable="true"></DataGridColumn>
+                <DataGridColumn TItem="Music" Field="@nameof(Music.Track)" Caption="Song" Filterable="true"></DataGridColumn>
+                <DataGridColumn TItem="Music" Field="@nameof(Music.Album)" Caption="Album" Filterable="true"></DataGridColumn>
+                <DataGridColumn TItem="Music" Field="@nameof(Music.Playlist)" Caption="Playlist" Filterable="true"></DataGridColumn>
+            </DataGrid>
+        </div>
+        <button @onclick="@onRecommendationButtonClick">Recommendation Finder</button>
+        @if (selectedSongs is null)
+        {
+            <p>is null</p>
+        }
+        else
+        {
+            <p> @selectedSongs.Count</p>
+        }
+
+
+    }
+
+
+
+    @code
+{
+        private List<Music> selectedSongs;
+
+
+        protected override async Task OnInitializedAsync()
+        {
+            Songs = (await MusicService.GetSongs());
+
+        }
+
+
+        void onRecommendationButtonClick()
+        {
+            foreach (var entry in selectedSongs)
+            {
+                var postBody = entry;
+                MusicService.CreateSelectedSongs(entry);
+            }
+            UriHelper.NavigateTo("/recommendations");
+
+        }
+
+    }
+
 
 
 
