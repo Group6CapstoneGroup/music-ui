@@ -8,6 +8,6 @@ namespace MusicRecommendation.App.Services
 {
     public interface IRecommendationService
     {
-        Task<IEnumerable<Music>> GetRecommendations();
+        Task<string> GetRecommendations();
     }
 }

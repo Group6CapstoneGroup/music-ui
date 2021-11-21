@@ -1,38 +1,79 @@
 ﻿@page "/recommendations"
 @using MusicRecommendation.App.Components
-@inject IHttpClientFactory ClientFactory
+@inherits RecommendationSongBase
 
-    <div>
-        <h6>Recommendations based on these songs:</h6>
-        <RecommendationSongTable />
-    </div>
+    <html>
+    <head>
+        <style>
+            button {
+                border-radius: 12px;
+                background-color: #FF6549;
+                border: none;
+                padding: 10px;
+                color: white;
+                margin-top: 10px;
+            }
 
-    @code 
+            #addmore {
+                border-radius: 12px;
+                background-color: #C2248B;
+                border: none;
+                padding: 10px;
+                color: white;
+                margin-top: 10px;
+            }
+            #submit {
+                border-radius: 12px;
+                background-color: #2ECC71;
+                border: none;
+                padding: 10px;
+                color: white;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h6>Recommendations based on these songs:</h6>
+            <RecommendationSongTable />
+            <button id="submit" @onclick="@onSubmitButtonClick">Submit</button>
+
+            <div>
+                <h4>Here's your recommendations:</h4>
+                @if (IsLoading == true)
+                {
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border" role="status"></div>
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                }
+
+               <p><h6>@myRecommendations</h6></p>
+            </div>
+        </div>     
+    </body>
+</html>
+    @code
     {
-    
-        /*
-        protected override async Task OnInitializedAsync()
+        private bool IsLoading { get; set; } = false;
+
+        string myRecommendations;
+
+        void onSubmitButtonClick()
         {
-            var request = new HttpRequestMessage(HttpMethod.Get,
-                "http://127.0.0.1:5000/");
+            
+            LoadResults();
 
-            var client = ClientFactory.CreateClient();
-
-            var response = await client.SendAsync(request);
-            Console.WriteLine("I am about to make the API call");
-            if (response.IsSuccessStatusCode)
-            {
-                Console.WriteLine("I successfully made the GET all music call");
-                var responseBody = await response.Content.ReadAsStringAsync();
-
-                Console.WriteLine(responseBody);
-
-            }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("An error occured when fetching song data");
-            }
         }
-    */
+
+        private async void LoadResults()
+        {
+            IsLoading = true;
+            System.Threading.Thread.Sleep(3000);
+            IsLoading = false;
+            myRecommendations = await RecommendationService.GetRecommendations();
+
+        }
+
 
     }

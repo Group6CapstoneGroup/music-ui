@@ -37,15 +37,6 @@
             </DataGrid>
         </div>
         <button @onclick="@onRecommendationButtonClick">Recommendation Finder</button>
-        @if (selectedSongs is null)
-        {
-            <p>is null</p>
-        }
-        else
-        {
-            <p> @selectedSongs.Count</p>
-        }
-
 
     }
 
@@ -62,16 +53,29 @@
 
         }
 
-
-        void onRecommendationButtonClick()
+        void isDisabled()
         {
-            foreach (var entry in selectedSongs)
-            {
-                var postBody = entry;
-                MusicService.CreateSelectedSongs(entry);
-            }
-            UriHelper.NavigateTo("/recommendations");
 
+        }
+
+
+        async void onRecommendationButtonClick()
+        {
+
+            IEnumerable<Music> currentSelectedSongs = await MusicService.GetSelectedSongs();
+
+
+            if(selectedSongs is not null)
+            {
+                foreach (var entry in selectedSongs)
+                {
+
+                  var postBody = entry;
+                  await MusicService.CreateSelectedSongs(entry);
+                }
+
+                UriHelper.NavigateTo("/recommendations");
+            }
         }
 
     }

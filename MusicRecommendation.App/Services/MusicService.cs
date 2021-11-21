@@ -73,11 +73,9 @@ namespace MusicRecommendation.App.Services
             {
                 Console.WriteLine("I successfully made the GET all selected music call");
                 var responseBody = await httpResponseMessage.Content.ReadAsStringAsync();
+                var selectedSongs = JsonSerializer.Deserialize<List<Music>>(responseBody);
 
-                var songs = JsonSerializer.Deserialize<List<Music>>(responseBody);
-
-                return songs;
-
+                return selectedSongs;
             }
             else
             {
@@ -86,6 +84,27 @@ namespace MusicRecommendation.App.Services
             }
             return null;
 
+        }
+
+        public async Task<bool> DeleteSelectedSongs()
+        {
+            Console.WriteLine("I am about to make the API call delete Selected Songs");
+
+            var httpClient = _httpClientFactory.CreateClient();
+            var httpResponseMessage = await httpClient.DeleteAsync("https://localhost:5001/api/SelectedSongs/List");
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                Console.WriteLine("I successfully made the delete all selected music call");
+                return true;
+
+            }
+            else
+            {
+                Console.WriteLine("There was an error");
+
+            }
+            return false;
         }
 
 
