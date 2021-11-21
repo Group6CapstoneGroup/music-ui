@@ -72,7 +72,7 @@
             System.Threading.Thread.Sleep(3000);
             IsLoading = false;
             myRecommendations = await RecommendationService.GetRecommendations();
-
+            this.StateHasChanged();
         }
 
 

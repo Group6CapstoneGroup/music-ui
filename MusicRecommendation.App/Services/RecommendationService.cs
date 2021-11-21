@@ -28,9 +28,7 @@ namespace MusicRecommendation.App.Services
                 Console.WriteLine("I successfully made the GET all music call");
                 var responseBody = await httpResponseMessage.Content.ReadAsStringAsync();
 
-                var recommendations = JsonSerializer.Deserialize<string>(responseBody);
-
-                return recommendations;
+                return responseBody;
 
             }
             else
