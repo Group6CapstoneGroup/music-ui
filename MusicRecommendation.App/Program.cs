@@ -41,18 +41,12 @@ namespace MusicRecommendation.App
 
             builder.Services.AddHttpClient();
             ConfigureMusicService(builder);
-            ConfigureRecommendationService(builder);
             await builder.Build().RunAsync();
         }
 
         private static void ConfigureMusicService(WebAssemblyHostBuilder builder)
         {
             builder.Services.AddSingleton<IMusicService, MusicService>();
-        }
-
-        private static void ConfigureRecommendationService(WebAssemblyHostBuilder builder)
-        {
-            builder.Services.AddSingleton<IRecommendationService, RecommendationService>();
         }
     }
 }

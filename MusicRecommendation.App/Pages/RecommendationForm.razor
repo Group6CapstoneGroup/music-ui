@@ -1,79 +1,83 @@
 ﻿@page "/recommendations"
 @using MusicRecommendation.App.Components
-@inherits RecommendationSongBase
+@inherits GridMusicBase
+@inject NavigationManager UriHelper
 
-    <html>
-    <head>
-        <style>
-            button {
-                border-radius: 12px;
-                background-color: #FF6549;
-                border: none;
-                padding: 10px;
-                color: white;
-                margin-top: 10px;
-            }
+<html>
+<head>
+    <style>
+        button {
+            border-radius: 12px;
+            background-color: #FF6549;
+            border: none;
+            padding: 10px;
+            color: white;
+            margin-top: 10px;
+        }
 
-            #addmore {
-                border-radius: 12px;
-                background-color: #C2248B;
-                border: none;
-                padding: 10px;
-                color: white;
-                margin-top: 10px;
-            }
-            #submit {
-                border-radius: 12px;
-                background-color: #2ECC71;
-                border: none;
-                padding: 10px;
-                color: white;
-                margin-top: 10px;
-            }
-        </style>
-    </head>
-    <body>
+        #addmore {
+            border-radius: 12px;
+            background-color: #C2248B;
+            border: none;
+            padding: 10px;
+            color: white;
+            margin-top: 10px;
+        }
+
+        #submit {
+            border-radius: 12px;
+            background-color: #2ECC71;
+            border: none;
+            padding: 10px;
+            color: white;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h6>Recommendations based on these songs:</h6>
+        <RecommendationSongTable />
+        <button @onclick="@onDeleteButtonClick">Delete List</button>
+        <button id="addmore" @onclick="@onAddMoreButtonClick">Add More Songs</button>
+        <button id="submit" @onclick="@onSubmitButtonClick">Submit</button>
         <div>
-            <h6>Recommendations based on these songs:</h6>
-            <RecommendationSongTable />
-            <button id="submit" @onclick="@onSubmitButtonClick">Submit</button>
-
-            <div>
-                <h4>Here's your recommendations:</h4>
-                @if (IsLoading == true)
-                {
-                    <div class="d-flex justify-content-center">
-                        <div class="spinner-border" role="status"></div>
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                }
-
-               <p><h6>@myRecommendations</h6></p>
-            </div>
-        </div>     
-    </body>
+            <h4>Here's your recommendations:</h4>
+            <h6>@responses</h6>
+        </div>
+    </div>
+</body>
 </html>
-    @code
+@code
     {
-        private bool IsLoading { get; set; } = false;
 
-        string myRecommendations;
+    private string responses;
 
-        void onSubmitButtonClick()
-        {
-            
-            LoadResults();
+    async void onDeleteButtonClick()
+    {
+        await MusicService.DeleteSelectedSongs();
 
-        }
-
-        private async void LoadResults()
-        {
-            IsLoading = true;
-            System.Threading.Thread.Sleep(3000);
-            IsLoading = false;
-            myRecommendations = await RecommendationService.GetRecommendations();
-            this.StateHasChanged();
-        }
-
-
+        UriHelper.NavigateTo("/account");
     }
+
+    void onAddMoreButtonClick()
+    {
+
+        UriHelper.NavigateTo("/account");
+    }
+
+
+    async void onSubmitButtonClick()
+    {
+
+        RecommendationList = await MusicService.GetSelectedSongs();
+
+
+        responses = await MusicService.GetRecommendations();
+
+        this.StateHasChanged();
+    }
+
+
+
+}

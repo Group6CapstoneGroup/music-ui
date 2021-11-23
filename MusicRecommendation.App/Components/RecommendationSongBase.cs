@@ -11,8 +11,7 @@ namespace MusicRecommendation.App.Components
     public class RecommendationSongBase : ComponentBase
     {
         [Inject]
-        public IRecommendationService RecommendationService { get; set; }
-        public IEnumerable<Music> RecommendationData { get; set; }
+        public IEnumerable<Music> RecommendationResponseData { get; set; }
 
 
     }

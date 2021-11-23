@@ -107,6 +107,51 @@ namespace MusicRecommendation.App.Services
             return false;
         }
 
+        public async Task<string> GetRecommendations()
+        {
+            Console.WriteLine("I am about to make the API call");
 
+            var httpClient = _httpClientFactory.CreateClient();
+
+            var httpResponseMessage = await httpClient.GetAsync("http://127.0.0.1:9999/date");
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                Console.WriteLine("I successfully made the GET all music call");
+                var responseBody = await httpResponseMessage.Content.ReadAsStringAsync();
+
+                return responseBody;
+
+            }
+            else
+            {
+                Console.WriteLine("There was an error");
+
+            }
+            return null;
+        }
+
+        public async Task<string> CreateRecommendationsRequest(string entry)
+        {
+            Console.WriteLine("I Entered POST request for recommendation service");
+
+            var httpClient = _httpClientFactory.CreateClient();
+
+            var httpResponseMessage = await httpClient.PostAsJsonAsync("http://127.0.0.1:9999", entry);
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                Console.WriteLine("I successfully made the POST call to the recommendation service");
+                var response = httpResponseMessage.Content.ToString();
+                return response;
+            }
+            else
+            {
+                Console.WriteLine("There was an error");
+
+            }
+            return null;
+
+        }
     }
 }
