@@ -13,5 +13,7 @@ namespace MusicRecommendation.App.Components
         [Inject]
         public IMusicService MusicService { get; set; }
         public IEnumerable<Music> Songs { get; set; }
+
+        public IEnumerable<Music> RecommendationList { get; set; }
     }
 }

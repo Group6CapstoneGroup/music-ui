@@ -1,7 +1,7 @@
 ﻿@page "/account"
 @using MusicRecommendation.App.Components
-@inject NavigationManager UriHelper
-
+@using MusicRecommendation.App.Models 
+@inherits GridMusic  
 <html>
 <head>
     <style>
@@ -30,9 +30,5 @@
 @code
 { 
 
-    void onRecommendationButtonClick()
-    {
-        UriHelper.NavigateTo("/recommendations");
-    }
 
 }

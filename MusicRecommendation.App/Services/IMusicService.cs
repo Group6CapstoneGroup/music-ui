@@ -9,5 +9,8 @@ namespace MusicRecommendation.App.Services
     public interface IMusicService
     {
         Task<IEnumerable<Music>> GetSongs();
+        Task<Music> CreateSelectedSongs(Music body);
+        Task<IEnumerable<Music>> GetSelectedSongs();
+        Task<bool> DeleteSelectedSongs();
     }
 }

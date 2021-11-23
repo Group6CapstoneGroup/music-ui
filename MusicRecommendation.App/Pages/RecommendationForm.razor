@@ -1,9 +1,44 @@
 ﻿@page "/recommendations"
 @using MusicRecommendation.App.Components
-@inject IHttpClientFactory ClientFactory
+@inherits RecommendationSongBase
+
+    <html>
+    <head>
+        <style>
+            button {
+                border-radius: 12px;
+                background-color: #FF6549;
+                border: none;
+                padding: 10px;
+                color: white;
+                margin-top: 10px;
+            }
+
+            #addmore {
+                border-radius: 12px;
+                background-color: #C2248B;
+                border: none;
+                padding: 10px;
+                color: white;
+                margin-top: 10px;
+            }
+            #submit {
+                border-radius: 12px;
+                background-color: #2ECC71;
+                border: none;
+                padding: 10px;
+                color: white;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h6>Recommendations based on these songs:</h6>
+            <RecommendationSongTable />
+            <button id="submit" @onclick="@onSubmitButtonClick">Submit</button>
 
 <h3>RecommendationForm</h3>
-<RecommendationSongTable/>
 
 
 @code {
