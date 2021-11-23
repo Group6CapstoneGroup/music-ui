@@ -1,0 +1,55 @@
+﻿@using MusicRecommendation.App.Models
+@using System.Net.Http.Json
+@using MusicRecommendation.App.Components
+@using Blazorise.DataGrid
+@inject HttpClient httpClient
+@inherits GridMusicBase
+@inject NavigationManager UriHelper
+
+@if (RecommendationList == null)
+{
+
+    <p><em>Loading....</em></p>
+
+}
+else
+{
+
+    <div>
+        <DataGrid TItem="Music"
+                  Data="@RecommendationList"
+                  Sortable="true"
+                  Editable="false"
+                  ShowPager="true"
+                  PageSize="10">
+            <DataGridColumn TItem="Music" Field="@nameof(Music.Artist)" Caption="Artist" Filterable="true"></DataGridColumn>
+            <DataGridColumn TItem="Music" Field="@nameof(Music.Track)" Caption="Song" Filterable="true"></DataGridColumn>
+            <DataGridColumn TItem="Music" Field="@nameof(Music.Album)" Caption="Album" Filterable="true"></DataGridColumn>
+        </DataGrid>
+    </div>
+    <button @onclick="@onDeleteButtonClick">Delete List</button>
+    <button id="addmore" @onclick="@onAddMoreButtonClick">Add More Songs</button>
+}
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        RecommendationList = (await MusicService.GetSelectedSongs());
+
+    }
+
+    async void onDeleteButtonClick()
+    {
+        await MusicService.DeleteSelectedSongs();
+
+        UriHelper.NavigateTo("/account");
+    }
+
+    void onAddMoreButtonClick()
+    {
+
+        UriHelper.NavigateTo("/account");
+    }
+
+}

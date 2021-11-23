@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MusicRecommendation.App.Services;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace MusicRecommendation.App
 {
@@ -38,7 +40,19 @@ namespace MusicRecommendation.App
             });
 
             builder.Services.AddHttpClient();
+            ConfigureMusicService(builder);
+            ConfigureRecommendationService(builder);
             await builder.Build().RunAsync();
+        }
+
+        private static void ConfigureMusicService(WebAssemblyHostBuilder builder)
+        {
+            builder.Services.AddSingleton<IMusicService, MusicService>();
+        }
+
+        private static void ConfigureRecommendationService(WebAssemblyHostBuilder builder)
+        {
+            builder.Services.AddSingleton<IRecommendationService, RecommendationService>();
         }
     }
 }
