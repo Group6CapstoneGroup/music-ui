@@ -40,7 +40,6 @@ namespace MusicRecommendation.App.Services
             }
             return null;
         }
-
         public async Task<Music> CreateSelectedSongs(Music postBody)
         {
             Console.WriteLine("I am about to make the API post call");
@@ -107,6 +106,14 @@ namespace MusicRecommendation.App.Services
             return false;
         }
 
+        public Task<string> GetRecommendations()
+        {
+            throw new NotImplementedException();
+        }
 
+        public Task<string> CreateRecommendationsRequest(string entry)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

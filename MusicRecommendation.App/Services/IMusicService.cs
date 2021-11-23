@@ -12,5 +12,9 @@ namespace MusicRecommendation.App.Services
         Task<Music> CreateSelectedSongs(Music body);
         Task<IEnumerable<Music>> GetSelectedSongs();
         Task<bool> DeleteSelectedSongs();
+
+        Task<string> GetRecommendations();
+
+        Task<string> CreateRecommendationsRequest(string entry);
     }
 }
