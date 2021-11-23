@@ -1,47 +1,46 @@
 ﻿@using MusicRecommendation.App.Models
-@using System.Net.Http.Json
-@using MusicRecommendation.App.Components
+@using MusicRecommendation.App.Common
 @using Blazorise.DataGrid
-@using MusicRecommendation.App.Services
+@using System.IO
+@using System.Text.Json
+@using System.Text.Json.Serialization;
+@using Microsoft.Extensions.Logging;
+@inject IHttpClientFactory ClientFactory
 @inherits GridMusicBase
-@inject HttpClient httpClient
 @inject NavigationManager UriHelper
 
-@if (RecommendationList == null)
-{
+ @if (RecommendationList == null)
+    {
 
-    <p><em>Loading....</em></p>
+        <p><em>Loading....</em></p>
 
-}
-else
-{
+    }
+    else
+    {
 
-<div>
-    <DataGrid TItem="Music"
-              Data="@RecommendationList"
-              Sortable="true"
-              Editable="false"
-              ShowPager="true"
-              PageSize="10">
-        <DataGridColumn TItem="Music" Field="@nameof(Music.Artist)" Caption="Artist" Filterable="true"></DataGridColumn>
-        <DataGridColumn TItem="Music" Field="@nameof(Music.Track)" Caption="Song" Filterable="true"></DataGridColumn>
-        <DataGridColumn TItem="Music" Field="@nameof(Music.Album)" Caption="Album" Filterable="true"></DataGridColumn>
-    </DataGrid>
-</div>
+        <div>
+            <DataGrid TItem="Music"
+                      Data="@RecommendationList"
+                      Sortable="true"
+                      Editable="false"
+                      ShowPager="true"
+                      PageSize="10">
+                <DataGridMultiSelectColumn TItem="Music" Width="30px"></DataGridMultiSelectColumn>
+                <DataGridColumn TItem="Music" Field="@nameof(Music.Artist)" Caption="Artist" Filterable="true"></DataGridColumn>
+                <DataGridColumn TItem="Music" Field="@nameof(Music.Track)" Caption="Song" Filterable="true"></DataGridColumn>
+                <DataGridColumn TItem="Music" Field="@nameof(Music.Album)" Caption="Album" Filterable="true"></DataGridColumn>
+                <DataGridColumn TItem="Music" Field="@nameof(Music.Playlist)" Caption="Playlist" Filterable="true"></DataGridColumn>
+            </DataGrid>
+        </div>
 
+    }
 
+@code{
 
-}
+    protected override async Task OnInitializedAsync()
+    {
+        RecommendationList = (await MusicService.GetSelectedSongs());
 
-@code {
-
-protected override async Task OnInitializedAsync()
-{
-    RecommendationList = (await MusicService.GetSelectedSongs());
-
-}
-
-
-
+    }
 
 }

@@ -1,7 +1,6 @@
 ﻿@using MusicRecommendation.App.Models
 @using MusicRecommendation.App.Common
 @using Blazorise.DataGrid
-
 @using System.IO
 @using System.Text.Json
 @using System.Text.Json.Serialization;
@@ -50,11 +49,6 @@
         protected override async Task OnInitializedAsync()
         {
             Songs = (await MusicService.GetSongs());
-
-        }
-
-        void isDisabled()
-        {
 
         }
 
