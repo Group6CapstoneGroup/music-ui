@@ -4,30 +4,82 @@
 <html>
 <head>
     <style>
-        button {
-            border-radius: 12px;
-            background-color: #C2248B;
+        #img-button {
+            height: 105px;
+            width: 120px;
+            background-size: cover;
+            vertical-align: middle;
             border: none;
-            padding: 10px;
-            color: white;
+        }
+        #header{
+            margin-left: 20px;
+        }
+        #text{
+            margin-top: 30px;
+        }
+        #breakup-text {
+            margin-top: 50px;
+        }
+        #img {
+            margin-top: 20px;
+
+        }
+        #login-text {
+            font-size: 70px;
+            color: #61D1F5;
+            font-family: Copperplate, fantasy;
+            margin-top: 20px;
+            margin-left: 80px;
+        }
+        #sync-text {
+            font-size: 70px;
+            color: #22ABD6;
+            font-family: Copperplate, fantasy;
+            margin-top: 20px;
+            margin-left: 180px;
+        }
+        #refresh-text {
+            font-size: 70px;
+            color: #AD61F5;
+            font-family: Copperplate, fantasy;
+            margin-top: 20px;
+            margin-left: 280px;
+        }
+        #go-text {
+            font-size: 70px;
+            color: #DF61F5;
+            font-family: Copperplate, fantasy;
+            margin-top: 20px;
+            margin-left: 380px;
         }
     </style>
 </head>
 <body>
-
-    <div>
-        <img src="./soundwave.png" height="125" width="650" />
-    </div>
-    <div>
-        <h4>Find new music instantly!</h4>
-        <p>
-            With hundreds of thousands of song to browse from update your library today!
-            Whether it's to keep you motivated during a workout or just to freshen up your
-            playlist we are here to help!
-        </p>
-    </div>
-    <button @onclick="@LoginNavigate">Log in</button>
-    <button @onclick="@SignUpNavigate">Sign up</button>
+    <form>
+        <div>
+            <img src="./soundwave.png" height="125" width="650" />
+        </div>
+        <div>
+            <h2 font-size="70"><b>Find new music instantly!</b></h2>
+            <p>
+                With hundreds of thousands of song to browse from update your library today!
+                Whether it's to keep you motivated during a workout or just to freshen up your
+                playlist we are here to help!
+            </p>
+        </div>
+        <div>
+            <h4 id="text"><b>Select your music provider below to login:</b></h4>
+            <button id="img-button" @onclick="@LoginNavigate" style="background: url(./spotifylogo.png)" />
+            <button id="img-button" @onclick="@LoginNavigate" style="background: url(./applelogo.png)" />
+            <button id="img-button" @onclick="@LoginNavigate" style="background: url(./primemusiclogo.png)" />
+        </div>
+        <div id="breakup-text">
+            <h2 id="login-text">Login</h2>
+            <h2 id="sync-text">Sync Up</h2>
+            <h2 id="refresh-text">Refresh</h2>
+            <h2 id="go-text">Go!</h2>
+        </div>
+    </form>
 </body>
 </html>
 
@@ -36,8 +88,5 @@
     {
         UriHelper.NavigateTo("/login");
     }
-    void SignUpNavigate()
-    {
-        UriHelper.NavigateTo("/signup");
-    }
+
 }
