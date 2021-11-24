@@ -15,6 +15,6 @@ namespace MusicRecommendation.App.Services
 
         Task<string> GetRecommendations();
 
-        Task<string> CreateRecommendationsRequest(string entry);
+        Task<string> CreateRecommendationsRequest(Music entry);
     }
 }

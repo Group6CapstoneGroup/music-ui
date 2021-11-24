@@ -1,5 +1,6 @@
 ﻿@page "/recommendations"
 @using MusicRecommendation.App.Components
+@using MusicRecommendation.App.Models
 @inherits GridMusicBase
 @inject NavigationManager UriHelper
 
@@ -37,7 +38,7 @@
 <body>
     <div>
         <h6>Recommendations based on these songs:</h6>
-        <RecommendationSongTable/>
+        <RecommendationSongTable />
         <button @onclick="@onDeleteButtonClick">Delete List</button>
         <button id="addmore" @onclick="@onAddMoreButtonClick">Add More Songs</button>
         <button id="submit" @onclick="@onSubmitButtonClick">Submit</button>
@@ -73,7 +74,14 @@
         RecommendationList = await MusicService.GetSelectedSongs();
 
 
-        responses = "I successfully made a submit response";
+        Music myNewMusic = new Music();
+        myNewMusic.Track = "track1";
+        myNewMusic.Album = "album1";
+        myNewMusic.Artist = "artist1";
+        myNewMusic.Playlist = "playlist1";
+
+
+        responses = await MusicService.CreateRecommendationsRequest(myNewMusic);
 
         this.StateHasChanged();
     }
