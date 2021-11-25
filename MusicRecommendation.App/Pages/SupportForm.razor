@@ -1,8 +1,51 @@
 ﻿@page "/support"
 <html>
+<head>
+    <style>
+        #label {
+            color: #C2248B;
+            font-family: Copperplate, fantasy;
+            font-size: 30px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
 <body>
     <div>
-        <h4>Support Details Here</h4>
+        <h4 id="label">Set Up Instructions</h4>
+
+        <h4>1. Log in</h4>
+        <p>
+            Go to the homepage and select the icon of your streaming provider listed. Currently we only support an integration with Spotify, Apple Music and Prime Music.
+        </p>
+        <img src="./setupInstructions/homepage.PNG" height="200" width="600" />
+
+        <p>
+            Once you have selected your streaming provider you will be redirected to the login page. Here you will enter in the email address and password credentials for your streaming service.
+        </p>
+        <img src="./setupInstructions/loginpage.PNG" height="300" width="600" />
+
+        <h4>2. Verify your song data displayed</h4>
+        <p>
+            Once you have successfully logged in you will be navigated to your account screen. Here you will see all the music data we were able to extract from your streaming provider.
+        </p>
+        <img src="./setupInstructions/accountDetailsPage.PNG" height="280" width="1435" />
+        <h4>3. Select songs you want to get recommendations on</h4>
+        <p>
+            Select the songs you wish to make recommendations on. For instance if you want more motivation during a work out select your current hype songs. Once you are done selecting click<br />
+            the green Recommendation Finder button.
+        </p>
+        <img src="./setupInstructions/selectionProcess.PNG" height="245" width="1384" />
+        <img src="./setupInstructions/recommendationButton.PNG" height="185" width="529" />
+
+        <h4>4. Review recommendations</h4>
+        <p>
+            After you clicke the recommendation finder button you are redirected to the recommendation page. The recommendation page displays the songs that will be passed to our machine learning <br />
+            model. You can modify the song selection by deleting the entire song list on the recommendation page by clicking the "Delete List" button. You can also add songs to the recommendation list<br />
+            by clicking the "Add songs" button.
+        </p>
+        <img src="./setupInstructions/recommendationPage.PNG" height="256" width="1000" />
+        <h4>5. Sync to streaming account</h4>
 
     </div>
 </body>
