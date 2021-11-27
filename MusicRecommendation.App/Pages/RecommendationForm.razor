@@ -37,20 +37,28 @@
 </head>
 <body>
     <div>
-        <h6>Recommendations based on these songs:</h6>
-        <RecommendationSongTable />
-        <button @onclick="@onDeleteButtonClick">Delete List</button>
-        <button id="addmore" @onclick="@onAddMoreButtonClick">Add More Songs</button>
-        <button id="submit" @onclick="@onSubmitButtonClick">Submit</button>
         <div>
+            <h6>Recommendations based on these songs:</h6>
+            <RecommendationSongTable />
+            <button @onclick="@onDeleteButtonClick">Delete List</button>
+            <button id="addmore" @onclick="@onAddMoreButtonClick">Add More Songs</button>
+            <button id="submit" @onclick="@onSubmitButtonClick">Submit</button>
+        </div>
+        <div>
+            <RecommendationResponseTable />
+        </div>
+            <div>
             <h4>Here's your recommendations:</h4>
-            <h6>@responses</h6>
+            <h6>@responses</h6>    
+
         </div>
     </div>
 </body>
 </html>
 @code
     {
+
+    bool showRecommendationComponent = false;
 
     private string responses;
 
@@ -71,18 +79,20 @@
     async void onSubmitButtonClick()
     {
 
+
+
         RecommendationList = await MusicService.GetSelectedSongs();
 
 
         Music myNewMusic = new Music();
-        myNewMusic.Track = "track1";
-        myNewMusic.Album = "album1";
-        myNewMusic.Artist = "artist1";
-        myNewMusic.Playlist = "playlist1";
+        myNewMusic.Track = "Since U Been Gone";
+        myNewMusic.Album = "Album1";
+        myNewMusic.Artist = "Kelly Clarkson";
+        myNewMusic.Playlist = "workout";
 
 
         responses = await MusicService.CreateRecommendationsRequest(myNewMusic);
-
+        showRecommendationComponent = true;
         this.StateHasChanged();
     }
 

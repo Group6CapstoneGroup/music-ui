@@ -1,0 +1,34 @@
+﻿@using MusicRecommendation.App.Models
+@using Blazorise.DataGrid
+@inject IHttpClientFactory ClientFactory
+@inherits RecommendationResponseTableBase
+@inject NavigationManager UriHelper
+
+
+<div>
+    <DataGrid TItem="Music"
+              Data="songList"
+              Sortable="true"
+              Editable="false"
+              ShowPager="true"
+              PageSize="10"
+              >
+        <DataGridMultiSelectColumn TItem="Music" Width="30px"></DataGridMultiSelectColumn>
+        <DataGridColumn TItem="Music" Field="@nameof(Music.Artist)" Caption="Artist" Filterable="true"></DataGridColumn>
+        <DataGridColumn TItem="Music" Field="@nameof(Music.Track)" Caption="Song" Filterable="true"></DataGridColumn>
+        <DataGridColumn TItem="Music" Field="@nameof(Music.Album)" Caption="Album" Filterable="true"></DataGridColumn>
+        <DataGridColumn TItem="Music" Field="@nameof(Music.Playlist)" Caption="Playlist" Filterable="true"></DataGridColumn>
+    </DataGrid>
+</div>
+
+@code {
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        songList = (await MusicService.GetSongs());
+
+    }
+
+}

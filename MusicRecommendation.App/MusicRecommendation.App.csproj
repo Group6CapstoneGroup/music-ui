@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Components\RecommendationResponseTable.razor" />
     <Content Remove="wwwroot\MySpotifyPlaylist.csv" />
   </ItemGroup>
 
@@ -22,6 +23,18 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\sample-data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\RecommendationResponseTable.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\RecommendationResponseTable.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Components\RecommendationResponseTable.razor" />
   </ItemGroup>
 
 </Project>
