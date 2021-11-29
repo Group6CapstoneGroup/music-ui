@@ -55,13 +55,13 @@
             <RecommendationSongTable />
             <button @onclick="@onDeleteButtonClick">Delete List</button>
             <button id="addmore" @onclick="@onAddMoreButtonClick">Add More Songs</button>
-            <button id="submit" @onclick="@onSubmitButtonClick">Submit</button>
+            <button id="submit" disabled="@IsSubmitTaskRunning" @onclick="@onSubmitButtonClick">Submit</button>
         </div>
         <div id="recommendationTable">
-            <h4>Here's your recommendations:</h4>
             @if (showRecommendationComponent)
             {
-                <div><GridRecommendations mlList="_mlList"/></div>
+                <h4>Here's your recommendations:</h4>
+                <div><GridRecommendations mlList="_mlList" /></div>
             }
 
         </div>
@@ -71,7 +71,11 @@
 @code
     {
 
+    //flag that pervents recommendations from showing as default
     bool showRecommendationComponent = false;
+    //flag to disable submit button default to false
+    bool IsSubmitTaskRunning = false;
+
     List<Music> _mlList = new List<Music>();
 
     private string responses;
@@ -92,8 +96,8 @@
 
     async void onSubmitButtonClick()
     {
-
-
+        //disable submit button click once it's running the task to get recommendations
+        IsSubmitTaskRunning = true;
 
         RecommendationList = await MusicService.GetSelectedSongs();
 
@@ -112,6 +116,7 @@
         }
 
         showRecommendationComponent = true;
+
         this.StateHasChanged();
     }
 

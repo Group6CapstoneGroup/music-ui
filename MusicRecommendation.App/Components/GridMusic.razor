@@ -17,7 +17,6 @@
     }
     else
     {
-
         <div>
             <DataGrid TItem="Music"
                       Data="@Songs"
@@ -35,13 +34,13 @@
                 <DataGridColumn TItem="Music" Field="@nameof(Music.Playlist)" Caption="Playlist" Filterable="true"></DataGridColumn>
             </DataGrid>
         </div>
-        <button @onclick="@onRecommendationButtonClick">Recommendation Finder</button>
+        <button id="recommendationbutton" @onclick="@onRecommendationButtonClick">Recommendation Finder</button>
 
     }
 
 
 
-    @code
+@code
 {
         private List<Music> selectedSongs;
 
@@ -51,7 +50,6 @@
             Songs = (await MusicService.GetSongs());
 
         }
-
 
         async void onRecommendationButtonClick()
         {

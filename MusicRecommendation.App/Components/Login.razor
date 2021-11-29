@@ -1,5 +1,6 @@
 ﻿@using MusicRecommendation.App.Shared
 @inject NavigationManager UriHelper
+@using MusicRecommendation.App.Components
 
 <html>
 <head>
@@ -46,8 +47,24 @@
 
 @code
 { 
+
+    void HandleValidSubmit()
+    {
+        // Trivial login/authentication for now in development application
+
+        if(UserName.Equals("testuser@yahoo.com") && Password.Equals("test"))
+        {
+            UriHelper.NavigateTo("/account");
+        }
+        else
+        {
+            UriHelper.NavigateTo("/login");
+        }
+    }
+
     void onSignInClick()
     {
-       UriHelper.NavigateTo("/account");
-    } 
+        HandleValidSubmit();
+
+    }
 }
