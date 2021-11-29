@@ -1,0 +1,47 @@
+﻿@using Blazorise.DataGrid
+@using MusicRecommendation.App.Models
+@inject NavigationManager UriHelper
+
+<div>
+    <DataGrid TItem="Music"
+              Data="@mlList"
+              Sortable="true"
+              Editable="false"
+              ShowPager="true"
+              PageSize="10"
+              SelectionMode="DataGridSelectionMode.Multiple"
+              @bind-SelectedRows="recommendationsSelected"
+              Responsive>
+        <DataGridMultiSelectColumn TItem="Music" Width="30px"></DataGridMultiSelectColumn>
+        <DataGridColumn TItem="Music" Field="@nameof(Music.Artist)" Caption="Artist" Filterable="true"></DataGridColumn>
+        <DataGridColumn TItem="Music" Field="@nameof(Music.Track)" Caption="Song" Filterable="true"></DataGridColumn>
+        <DataGridColumn TItem="Music" Field="@nameof(Music.Playlist)" Caption="Playlist" Filterable="true"></DataGridColumn>
+    </DataGrid>
+    <button id="addtoplaylist" @onclick="@onAddToPlaylistClick">Add to Playlist</button>
+</div>
+
+@code {
+
+    [Parameter]
+    public List<Music> mlList { get; set; }
+
+    private List<Music> recommendationsSelected;
+
+    async void onAddToPlaylistClick()
+    {
+        if (recommendationsSelected is not null)
+        {
+            foreach (var entry in recommendationsSelected)
+            {
+
+                var postBody = entry;
+                await MusicService.CreateMusicEntry(entry);
+            }
+
+            await MusicService.DeleteSelectedSongs();
+
+            UriHelper.NavigateTo("/account");
+        }
+    }
+
+}

@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace MusicRecommendation.App.Components
 {
-    public class RecommendationResponseTableBase : ComponentBase
+    public partial class GridRecommendations
     {
         [Inject]
         public IMusicService MusicService { get; set; }
-        public IEnumerable<Music> songList { get; set; }
     }
 }

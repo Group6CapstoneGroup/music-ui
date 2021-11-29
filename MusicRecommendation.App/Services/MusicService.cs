@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using MusicRecommendation.App.Models;
 using System;
 using System.Collections.Generic;
@@ -108,9 +109,24 @@ namespace MusicRecommendation.App.Services
             return false;
         }
 
-        public Task<string> GetRecommendations()
+        public async Task<IActionResult>CreateMusicEntry(Music entry)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("I am about to make the API post call");
+
+            var httpClient = _httpClientFactory.CreateClient();
+            var httpResponseMessage = await httpClient.PostAsJsonAsync("https://localhost:5001/api/Music", entry);
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                Console.WriteLine("I successfully made the POST call");
+
+            }
+            else
+            {
+                Console.WriteLine("There was an error");
+
+            }
+            return null;
         }
 
         public async Task<string> CreateRecommendationsRequest(Music entry)

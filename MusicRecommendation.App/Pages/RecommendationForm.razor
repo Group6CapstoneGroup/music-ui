@@ -33,23 +33,36 @@
             color: white;
             margin-top: 10px;
         }
+
+        #recommendationTable {
+            margin-top: 40px;
+        }
+
+        #addtoplaylist {
+            border-radius: 12px;
+            background-color: #2ECC71;
+            border: none;
+            padding: 10px;
+            color: white;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div>
         <div>
-            <h6>Recommendations based on these songs:</h6>
+            <h4>Make Recommendations Based On These Songs:</h4>
             <RecommendationSongTable />
             <button @onclick="@onDeleteButtonClick">Delete List</button>
             <button id="addmore" @onclick="@onAddMoreButtonClick">Add More Songs</button>
             <button id="submit" @onclick="@onSubmitButtonClick">Submit</button>
         </div>
-        <div>
-            <RecommendationResponseTable />
-        </div>
-            <div>
+        <div id="recommendationTable">
             <h4>Here's your recommendations:</h4>
-            <h6>@responses</h6>    
+            @if (showRecommendationComponent)
+            {
+                <div><GridRecommendations mlList="_mlList"/></div>
+            }
 
         </div>
     </div>
@@ -59,6 +72,7 @@
     {
 
     bool showRecommendationComponent = false;
+    List<Music> _mlList = new List<Music>();
 
     private string responses;
 
@@ -83,19 +97,22 @@
 
         RecommendationList = await MusicService.GetSelectedSongs();
 
+        foreach(var song in RecommendationList)
+        {
+            responses = await MusicService.CreateRecommendationsRequest(song);
+            string[] subs = responses.Split("%song%");
+            Music myNewSong = new Music();
+            myNewSong.Artist = subs[0];
+            myNewSong.Track = subs[1];
+            myNewSong.Playlist = "workout";
+            myNewSong.Album = "null";
 
-        Music myNewMusic = new Music();
-        myNewMusic.Track = "Since U Been Gone";
-        myNewMusic.Album = "Album1";
-        myNewMusic.Artist = "Kelly Clarkson";
-        myNewMusic.Playlist = "workout";
+            _mlList.Add(myNewSong);
 
+        }
 
-        responses = await MusicService.CreateRecommendationsRequest(myNewMusic);
         showRecommendationComponent = true;
         this.StateHasChanged();
     }
-
-
 
 }

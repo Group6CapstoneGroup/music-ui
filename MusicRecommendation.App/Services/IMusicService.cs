@@ -1,4 +1,5 @@
-﻿using MusicRecommendation.App.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using MusicRecommendation.App.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,8 @@ namespace MusicRecommendation.App.Services
         Task<Music> CreateSelectedSongs(Music body);
         Task<IEnumerable<Music>> GetSelectedSongs();
         Task<bool> DeleteSelectedSongs();
-
-        Task<string> GetRecommendations();
-
+        Task<IActionResult> CreateMusicEntry(Music entry);
         Task<string> CreateRecommendationsRequest(Music entry);
+
     }
 }

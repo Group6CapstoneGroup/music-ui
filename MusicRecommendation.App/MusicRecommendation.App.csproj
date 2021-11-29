@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Components\RecommendationResponseTable.razor" />
     <Content Remove="wwwroot\MySpotifyPlaylist.csv" />
   </ItemGroup>
 
@@ -16,6 +15,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.3" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
@@ -23,18 +23,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\sample-data\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Components\RecommendationResponseTable.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Components\RecommendationResponseTable.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Components\RecommendationResponseTable.razor" />
   </ItemGroup>
 
 </Project>
