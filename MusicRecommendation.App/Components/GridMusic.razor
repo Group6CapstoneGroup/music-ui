@@ -1,5 +1,6 @@
 ﻿@using MusicRecommendation.App.Models
 @using MusicRecommendation.App.Common
+@using MusicRecommendation.App.Components
 @using Blazorise.DataGrid
 @using System.IO
 @using System.Text.Json
@@ -9,68 +10,95 @@
 @inherits GridMusicBase
 @inject NavigationManager UriHelper
 
-    @if (Songs == null)
+@if (Songs == null || loadingFlag == true)
+{
+    if (loadingFlag)
     {
-
-        <p><em>Loading....</em></p>
-
+        <h4>Syncing....</h4>
+        <h6>Updating your streaming playlist please wait.</h6>
     }
-    else
-    {
-        <div>
-            <DataGrid TItem="Music"
-                      Data="@Songs"
-                      Sortable="true"
-                      Editable="false"
-                      ShowPager="true"
-                      PageSize="10"
-                      SelectionMode="DataGridSelectionMode.Multiple"
-                      @bind-SelectedRows="selectedSongs"
-                      Responsive>
-                <DataGridMultiSelectColumn TItem="Music" Width="30px"></DataGridMultiSelectColumn>
-                <DataGridColumn TItem="Music" Field="@nameof(Music.Artist)" Caption="Artist" Filterable="true"></DataGridColumn>
-                <DataGridColumn TItem="Music" Field="@nameof(Music.Track)" Caption="Song" Filterable="true"></DataGridColumn>
-                <DataGridColumn TItem="Music" Field="@nameof(Music.Album)" Caption="Album" Filterable="true"></DataGridColumn>
-                <DataGridColumn TItem="Music" Field="@nameof(Music.Playlist)" Caption="Playlist" Filterable="true"></DataGridColumn>
-            </DataGrid>
-        </div>
-        <button id="recommendationbutton" @onclick="@onRecommendationButtonClick">Recommendation Finder</button>
 
-    }
+    <Loader />
+}
+else
+{
+    <h4>Playlist Details</h4>
+    <div>
+        <DataGrid TItem="Music"
+                  Data="@Songs"
+                  Sortable="true"
+                  Editable="false"
+                  ShowPager="true"
+                  PageSize="10"
+                  SelectionMode="DataGridSelectionMode.Multiple"
+                  @bind-SelectedRows="selectedSongs"
+                  Responsive>
+            <DataGridMultiSelectColumn TItem="Music" Width="30px"></DataGridMultiSelectColumn>
+            <DataGridColumn TItem="Music" Field="@nameof(Music.Artist)" Caption="Artist" Filterable="true"></DataGridColumn>
+            <DataGridColumn TItem="Music" Field="@nameof(Music.Track)" Caption="Song" Filterable="true"></DataGridColumn>
+            <DataGridColumn TItem="Music" Field="@nameof(Music.Album)" Caption="Album" Filterable="true"></DataGridColumn>
+            <DataGridColumn TItem="Music" Field="@nameof(Music.Playlist)" Caption="Playlist" Filterable="true"></DataGridColumn>
+        </DataGrid>
+    </div>
+    <button id="recommendationbutton" @onclick="@onRecommendationButtonClick">Recommendation Finder</button>
+    <button id="syncmusic" disabled="@syncMusicFlag" @onclick="@onSyncClick">Sync Music</button>
+
+
+}
 
 
 
 @code
 {
-        private List<Music> selectedSongs;
+    private List<Music> selectedSongs;
+    bool syncMusicFlag = true;
+    bool loadingFlag = false;
 
+    protected override async Task OnInitializedAsync()
+    {
+        Songs = (await MusicService.GetSongs());
 
-        protected override async Task OnInitializedAsync()
+        if (Songs.Count() > 15)
         {
-            Songs = (await MusicService.GetSongs());
-
+            syncMusicFlag = false;
         }
+    }
 
-        async void onRecommendationButtonClick()
-        {
+    void setLoadingFlag(bool entry)
+    {
+        loadingFlag = entry;
+    }
 
-            IEnumerable<Music> currentSelectedSongs = await MusicService.GetSelectedSongs();
 
-
-            if(selectedSongs is not null)
-            {
-                foreach (var entry in selectedSongs)
-                {
-
-                  var postBody = entry;
-                  await MusicService.CreateSelectedSongs(entry);
-                }
-
-                UriHelper.NavigateTo("/recommendations");
-            }
-        }
+    async void onSyncClick()
+    {
+        setLoadingFlag(true);
+        await Task.Delay(10000);
+        setLoadingFlag(false);
+        this.StateHasChanged();
 
     }
+
+    async void onRecommendationButtonClick()
+    {
+
+        IEnumerable<Music> currentSelectedSongs = await MusicService.GetSelectedSongs();
+
+
+        if (selectedSongs is not null)
+        {
+            foreach (var entry in selectedSongs)
+            {
+
+                var postBody = entry;
+                await MusicService.CreateSelectedSongs(entry);
+            }
+
+            UriHelper.NavigateTo("/recommendations");
+        }
+    }
+
+}
 
 
 

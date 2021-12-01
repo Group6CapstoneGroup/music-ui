@@ -46,6 +46,9 @@
             color: white;
             margin-top: 10px;
         }
+        #spinner {
+            color: #5ADCC0;
+        }
     </style>
 </head>
 <body>
@@ -58,8 +61,13 @@
             <button id="submit" disabled="@IsSubmitTaskRunning" @onclick="@onSubmitButtonClick">Submit</button>
         </div>
         <div id="recommendationTable">
+            @if(loaderFlag)
+            {
+                <Loader/>
+            }
             @if (showRecommendationComponent)
             {
+                <div class="spinner"></div>
                 <h4>Here's your recommendations:</h4>
                 <div><GridRecommendations mlList="_mlList" /></div>
             }
@@ -76,9 +84,17 @@
     //flag to disable submit button default to false
     bool IsSubmitTaskRunning = false;
 
+    bool loaderFlag = false;
+
     List<Music> _mlList = new List<Music>();
 
     private string responses;
+
+
+    void setLoading(bool entry)
+    {
+        loaderFlag = entry;
+    }
 
     async void onDeleteButtonClick()
     {
@@ -98,6 +114,7 @@
     {
         //disable submit button click once it's running the task to get recommendations
         IsSubmitTaskRunning = true;
+        setLoading(true);
 
         RecommendationList = await MusicService.GetSelectedSongs();
 
@@ -114,7 +131,7 @@
             _mlList.Add(myNewSong);
 
         }
-
+        setLoading(false);
         showRecommendationComponent = true;
 
         this.StateHasChanged();
