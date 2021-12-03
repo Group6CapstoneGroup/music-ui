@@ -4,6 +4,7 @@
 @inherits GridMusic  
 <html>
 <head>
+    <PageTitle Value="@GetPageTitle()" />
     <style>
         #recommendationbutton {
             border-radius: 12px;
@@ -13,6 +14,7 @@
             color: white;
             margin-top: 10px;
         }
+
         #syncmusic {
             border-radius: 12px;
             background-color: #C2248B;
@@ -21,7 +23,8 @@
             color: white;
             margin-top: 10px;
         }
-        #spinner {
+
+        #spinner-loader {
             color: #5ADCC0;
             margin-top: 10px;
         }
@@ -37,5 +40,5 @@
 
 @code
 { 
-
+    private string GetPageTitle() => $"Tune Tip - Account";
 }

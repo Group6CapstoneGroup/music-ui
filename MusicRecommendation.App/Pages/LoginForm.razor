@@ -3,6 +3,9 @@
 @using MusicRecommendation.App.Components
 
 <html>
+<head>
+    <PageTitle Value="@GetPageTitle()" />
+</head>
 <body>
     <div>
         <center><h5><b>Login</b></h5></center>
@@ -15,6 +18,9 @@
 </html>
 
 
+
 @code{
+
+    private string GetPageTitle() => $"Tune Tip - Log In";
 
  }

@@ -1,8 +1,12 @@
-﻿@inject NavigationManager UriHelper
-@page "/"
+﻿@page "/"
+@inject NavigationManager UriHelper
 @using MusicRecommendation.App.Components
+
+
 <html>
 <head>
+
+    <PageTitle Value="@GetPageTitle()" />
     <style>
         #img-button {
             height: 105px;
@@ -12,18 +16,23 @@
             border: none;
             margin-top: 30px;
         }
-        #header{
+
+        #header {
             margin-left: 20px;
         }
-        #text{
+
+        #text {
             margin-top: 30px;
         }
+
         #breakup-text {
             margin-top: 50px;
         }
+
         #img {
             margin-top: 20px;
         }
+
         #login-text {
             color: #61D1F5;
             font-family: Copperplate, fantasy;
@@ -31,6 +40,7 @@
             margin-top: 20px;
             margin-left: 35px;
         }
+
         #sync-text {
             color: #22ABD6;
             font-family: Copperplate, fantasy;
@@ -38,6 +48,7 @@
             margin-top: 20px;
             margin-left: 35px;
         }
+
         #refresh-text {
             color: #AD61F5;
             font-family: Copperplate, fantasy;
@@ -45,6 +56,7 @@
             margin-top: 20px;
             margin-left: 35px;
         }
+
         #go-text {
             color: #DF61F5;
             font-family: Copperplate, fantasy;
@@ -65,11 +77,11 @@
         <div>
             <h2 id="text" font-size="70"><b>Find new music instantly!</b></h2>
             <p>
-                With thousands of songs to browse from update your library today! Whether it's to keep you motivated <br/>
-                during a workout or just to freshen up your playlist we are here to help.  We partner with major music <br/>
-                streaming services like Apple Music, Prime Music & Spotify. The best part is our service is completely free!<br/>
-                No need to setup an account with us just log in below using your email and password associated with your <br/>
-                streaming account. <br/>
+                With thousands of songs to browse from update your library today! Whether it's to keep you motivated <br />
+                during a workout or just to freshen up your playlist we are here to help.  We partner with major music <br />
+                streaming services like Apple Music, Prime Music & Spotify. The best part is our service is completely free!<br />
+                No need to setup an account with us just log in below using your email and password associated with your <br />
+                streaming account. <br />
             </p>
         </div>
         <div>
@@ -83,10 +95,14 @@
 </body>
 </html>
 
-@code{
+
+
+@code{ 
+
+    private string GetPageTitle() => $"Tune Tip - Home Page";
+
     void LoginNavigate()
     {
         UriHelper.NavigateTo("/login");
     }
-
 }

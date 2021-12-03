@@ -6,6 +6,7 @@
 
 <html>
 <head>
+    <PageTitle Value="@GetPageTitle()" />
     <style>
         button {
             border-radius: 12px;
@@ -46,7 +47,8 @@
             color: white;
             margin-top: 10px;
         }
-        #spinner {
+
+        #spinner-loader {
             color: #5ADCC0;
         }
     </style>
@@ -60,14 +62,13 @@
             <button id="addmore" @onclick="@onAddMoreButtonClick">Add More Songs</button>
             <button id="submit" disabled="@IsSubmitTaskRunning" @onclick="@onSubmitButtonClick">Submit</button>
         </div>
+        @if (loaderFlag == true)
+        {
+            <Loader />
+        }
         <div id="recommendationTable">
-            @if(loaderFlag)
-            {
-                <Loader/>
-            }
             @if (showRecommendationComponent)
             {
-                <div class="spinner"></div>
                 <h4>Here's your recommendations:</h4>
                 <div><GridRecommendations mlList="_mlList" /></div>
             }
@@ -79,11 +80,16 @@
 @code
     {
 
+    //setting page title
+    private string GetPageTitle() => $"Tune Tip - Recommendation Finder";
+
     //flag that pervents recommendations from showing as default
     bool showRecommendationComponent = false;
+
     //flag to disable submit button default to false
     bool IsSubmitTaskRunning = false;
 
+    //set default loading flag to false
     bool loaderFlag = false;
 
     List<Music> _mlList = new List<Music>();
@@ -131,10 +137,16 @@
             _mlList.Add(myNewSong);
 
         }
+
         setLoading(false);
+
         showRecommendationComponent = true;
 
+        IsSubmitTaskRunning = false;
+
+
         this.StateHasChanged();
+
     }
 
 }

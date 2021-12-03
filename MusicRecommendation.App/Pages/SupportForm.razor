@@ -1,6 +1,7 @@
 ﻿@page "/support"
 <html>
 <head>
+    <PageTitle Value="@GetPageTitle()" />
     <style>
         #label {
             color: #C2248B;
@@ -50,3 +51,7 @@
     </div>
 </body>
 </html>
+
+@code{
+    private string GetPageTitle() => $"Tune Tip - Support";
+}

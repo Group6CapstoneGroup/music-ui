@@ -1,6 +1,7 @@
 ﻿@page "/about"
 <html>
 <head>
+    <PageTitle Value="@GetPageTitle()" />
     <style>
         #label {
             color: #C2248B;
@@ -37,3 +38,7 @@
     </form>
 </body>
 </html>
+
+@code{
+    private string GetPageTitle() => $"Tune Tip - About";
+}
