@@ -10,6 +10,8 @@ Before running and utilizing Tune Tip UI, you need to have both music service an
 
 Running the user interface is very straight forward, you should be on a current .NET framework. We utilize .NET 5 for our application and the required NuGet packages installed in our solution are compatible with that framwork. Simply set MusicRecommendation.App as the startup project and run the application to pull up the UI. The application should successfully launch and you should be directed to the Tune Tip home page being hosted at: `http://localhost:3000/`.
 
+For a detailed demo of how to run Tune Tip and navigating through the UI please refer to this demo video [here](https://www.youtube.com/watch?v=LAy3bJiqh2k).
+
 ## Dependencies
 
 We are currently utilizing Blazorise for a few components:
