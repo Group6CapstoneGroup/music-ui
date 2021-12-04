@@ -27,11 +27,11 @@ namespace MusicRecommendation.UITests
         {
             using (IWebDriver driver = new ChromeDriver())
             {
-                driver.Navigate().GoToUrl("http://localhost:3000/");
+                driver.Navigate().GoToUrl("http://localhost:3000/login");
 
                 string pageTitle = driver.Title;
 
-                Assert.Equal("Tune Tip - Home Page", pageTitle);
+                Assert.Equal("Tune Tip - Log In", pageTitle);
             }
         }
 
@@ -41,11 +41,11 @@ namespace MusicRecommendation.UITests
         {
             using (IWebDriver driver = new ChromeDriver())
             {
-                driver.Navigate().GoToUrl("http://localhost:3000/");
+                driver.Navigate().GoToUrl("http://localhost:3000/account");
 
                 string pageTitle = driver.Title;
 
-                Assert.Equal("Tune Tip - Home Page", pageTitle);
+                Assert.Equal("Tune Tip - Account", pageTitle);
             }
         }
 
@@ -55,11 +55,11 @@ namespace MusicRecommendation.UITests
         {
             using (IWebDriver driver = new ChromeDriver())
             {
-                driver.Navigate().GoToUrl("http://localhost:3000/");
+                driver.Navigate().GoToUrl("http://localhost:3000/support");
 
                 string pageTitle = driver.Title;
 
-                Assert.Equal("Tune Tip - Home Page", pageTitle);
+                Assert.Equal("Tune Tip - Support", pageTitle);
             }
         }
 
@@ -69,11 +69,11 @@ namespace MusicRecommendation.UITests
         {
             using (IWebDriver driver = new ChromeDriver())
             {
-                driver.Navigate().GoToUrl("http://localhost:3000/");
+                driver.Navigate().GoToUrl("http://localhost:3000/about");
 
                 string pageTitle = driver.Title;
 
-                Assert.Equal("Tune Tip - Home Page", pageTitle);
+                Assert.Equal("Tune Tip - About", pageTitle);
             }
         }
 
@@ -83,11 +83,11 @@ namespace MusicRecommendation.UITests
         {
             using (IWebDriver driver = new ChromeDriver())
             {
-                driver.Navigate().GoToUrl("http://localhost:3000/");
+                driver.Navigate().GoToUrl("http://localhost:3000/recommendations");
 
                 string pageTitle = driver.Title;
 
-                Assert.Equal("Tune Tip - Home Page", pageTitle);
+                Assert.Equal("Tune Tip - Recommendations", pageTitle);
             }
         }
     }
