@@ -1,12 +1,10 @@
 ﻿@page "/"
 @inject NavigationManager UriHelper
 @using MusicRecommendation.App.Components
-
+@inject IJSRuntime JSRuntime;
 
 <html>
 <head>
-
-    <PageTitle Value="@GetPageTitle()" />
     <style>
         #img-button {
             height: 105px;
@@ -97,9 +95,12 @@
 
 
 
-@code{ 
+@code{
 
-    private string GetPageTitle() => $"Tune Tip - Home Page";
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", "Tune Tip - Home Page"); ;
+    }
 
     void LoginNavigate()
     {
