@@ -1,7 +1,8 @@
 ﻿@page "/support"
+@inject IJSRuntime JSRuntime;
+
 <html>
 <head>
-    <PageTitle Value="@GetPageTitle()" />
     <style>
         #label {
             color: #C2248B;
@@ -52,6 +53,10 @@
 </body>
 </html>
 
-@code{
-    private string GetPageTitle() => $"Tune Tip - Support";
+@code
+{
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", "Tune Tip - Support"); ;
+    }
 }

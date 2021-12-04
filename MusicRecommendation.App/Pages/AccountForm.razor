@@ -1,10 +1,11 @@
 @page "/account"
 @using MusicRecommendation.App.Components
-@using MusicRecommendation.App.Models 
-@inherits GridMusic  
+@using MusicRecommendation.App.Models
+@inherits GridMusic
+@inject IJSRuntime JSRuntime;
+
 <html>
 <head>
-    <PageTitle Value="@GetPageTitle()" />
     <style>
         #recommendationbutton {
             border-radius: 12px;
@@ -32,13 +33,16 @@
 </head>
 <body>
     <div>
-        <div><GridMusic/></div>
+        <div><GridMusic /></div>
     </div>
 
 </body>
 </html>
 
 @code
-{ 
-    private string GetPageTitle() => $"Tune Tip - Account";
+{
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", "Tune Tip - Account"); ;
+    }
 }

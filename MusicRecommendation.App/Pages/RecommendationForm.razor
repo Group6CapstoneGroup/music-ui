@@ -3,10 +3,10 @@
 @using MusicRecommendation.App.Models
 @inherits GridMusicBase
 @inject NavigationManager UriHelper
+@inject IJSRuntime JSRuntime;
 
 <html>
 <head>
-    <PageTitle Value="@GetPageTitle()" />
     <style>
         button {
             border-radius: 12px;
@@ -80,9 +80,6 @@
 @code
     {
 
-    //setting page title
-    private string GetPageTitle() => $"Tune Tip - Recommendations";
-
     //flag that pervents recommendations from showing as default
     bool showRecommendationComponent = false;
 
@@ -95,6 +92,12 @@
     List<Music> _mlList = new List<Music>();
 
     private string responses;
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", "Tune Tip - Recommendations"); ;
+    }
 
 
     void setLoading(bool entry)
@@ -124,7 +127,7 @@
 
         RecommendationList = await MusicService.GetSelectedSongs();
 
-        foreach(var song in RecommendationList)
+        foreach (var song in RecommendationList)
         {
             responses = await MusicService.CreateRecommendationsRequest(song);
             string[] subs = responses.Split("%song%");

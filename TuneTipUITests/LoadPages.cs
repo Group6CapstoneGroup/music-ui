@@ -1,10 +1,14 @@
 using Xunit;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using Assert = Xunit.Assert;
+using System.Threading;
 
 namespace TuneTipUITests
 {
-    public class UnitTest1
+    public class LoadPages
     {
         [Fact]
         [Trait("Category", "Smoke")]
@@ -13,7 +17,7 @@ namespace TuneTipUITests
             using (IWebDriver driver = new ChromeDriver())
             {
                 driver.Navigate().GoToUrl("http://localhost:3000/");
-
+                Thread.Sleep(3000);
                 string pageTitle = driver.Title;
 
                 Assert.Equal("Tune Tip - Home Page", pageTitle);
@@ -27,7 +31,7 @@ namespace TuneTipUITests
             using (IWebDriver driver = new ChromeDriver())
             {
                 driver.Navigate().GoToUrl("http://localhost:3000/login");
-
+                Thread.Sleep(3000);
                 string pageTitle = driver.Title;
 
                 Assert.Equal("Tune Tip - Log In", pageTitle);
@@ -41,7 +45,7 @@ namespace TuneTipUITests
             using (IWebDriver driver = new ChromeDriver())
             {
                 driver.Navigate().GoToUrl("http://localhost:3000/account");
-
+                Thread.Sleep(3000);
                 string pageTitle = driver.Title;
 
                 Assert.Equal("Tune Tip - Account", pageTitle);
@@ -55,7 +59,7 @@ namespace TuneTipUITests
             using (IWebDriver driver = new ChromeDriver())
             {
                 driver.Navigate().GoToUrl("http://localhost:3000/support");
-
+                Thread.Sleep(3000);
                 string pageTitle = driver.Title;
 
                 Assert.Equal("Tune Tip - Support", pageTitle);
@@ -69,13 +73,13 @@ namespace TuneTipUITests
             using (IWebDriver driver = new ChromeDriver())
             {
                 driver.Navigate().GoToUrl("http://localhost:3000/about");
-
+                Thread.Sleep(3000);
                 string pageTitle = driver.Title;
 
                 Assert.Equal("Tune Tip - About", pageTitle);
             }
         }
-
+        
         [Fact]
         [Trait("Category", "Smoke")]
         public void LoadApplicationRecommendationPage()
@@ -83,7 +87,7 @@ namespace TuneTipUITests
             using (IWebDriver driver = new ChromeDriver())
             {
                 driver.Navigate().GoToUrl("http://localhost:3000/recommendations");
-
+                Thread.Sleep(3000);
                 string pageTitle = driver.Title;
 
                 Assert.Equal("Tune Tip - Recommendations", pageTitle);
